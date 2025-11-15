@@ -13,7 +13,7 @@ import { Suppliers } from './components/suppliers/suppliers';
 
 
 export const routes: Routes = [
-    //{ path: 'Acceuil', component: PageAccueil, canActivate: [AuthGuard] },
+    
     {path:'login',component:PageLogin},
     {path:'register',component:PageInscription},
     {
@@ -31,5 +31,5 @@ export const routes: Routes = [
              {path:'suppliers',component:Suppliers}
         ]
     },
-    {path:'**',redirectTo:'login'}
+    {path:'**',redirectTo:'inventory'}
 ];

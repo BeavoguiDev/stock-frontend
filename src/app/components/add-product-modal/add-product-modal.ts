@@ -3,7 +3,6 @@ import { ProductService } from '../../services/product.service';
 import { Category, Product } from '../../Model/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { toast } from 'ngx-sonner';
 
 
@@ -32,7 +31,7 @@ export class AddProductModal implements OnInit {
 
   errors: string[] = [];
 
-  constructor(private productService: ProductService, private toastr: ToastrService) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.productService.getCategories().subscribe({
@@ -62,7 +61,7 @@ export class AddProductModal implements OnInit {
   });
 
   if (this.selectedFile) {
-    formDataToSend.append('image', this.selectedFile); // ✅ ajout de l’image
+    formDataToSend.append('image', this.selectedFile); 
   }
 
   this.productService.addProduct(formDataToSend).subscribe({

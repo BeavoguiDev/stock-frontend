@@ -15,7 +15,6 @@ export class DetailProductModal {
   @Output() closeModal = new EventEmitter<void>();
   @Input() categoryName!: string; 
   
-
   close(): void {
     this.closeModal.emit();
   }

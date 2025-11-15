@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Category, Product } from '../Model/model';
 
-
 @Injectable({
   providedIn: 'root'
 })
@@ -50,10 +49,11 @@ export class ProductService {
   }
 
   // Pour mettre à jour 
-
   updateProduct(id: number, data: FormData) {
-    return this.http.put<Product>(`${this.baseUrl}/products/${id}`, data);
-  }
+  // ✅ POST avec override pour Laravel
+  return this.http.post<Product>(`${this.baseUrl}/products/${id}`, data);
+}
+
 
 
 }

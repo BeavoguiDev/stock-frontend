@@ -32,13 +32,13 @@
     <thead>
       <tr>
         <th style="text-align: center;">-</th>
-        <th>Product</th>
-        <th>Buying Price</th>
-        <th>Quantity</th>
-        <th>Threshold</th>
-        <th>Expiry Date</th>
+        <th>Produit</th>
+        <th>Prix d'achat</th>
+        <th>Quantité</th>
+        <th>Seuil</th>
+        <th>Date d'expiration</th>
         <th>Availability</th>
-        <th>Actions</th> 
+        <th></th> 
       </tr>
     </thead>
     <tbody>
@@ -62,9 +62,9 @@
           </span>
         </td>
         <td>
-          <button class="btn btn-detail" (click)="viewDetail(product)">📄</button>
-          <button class="btn btn-edit" (click)="editProduct(product)">✏️</button>
-          <button class="btn btn-delete" (click)="deleteProduct(product)">🗑️</button>
+          <button class="btn btn-detail" (click)="viewDetail(product)" title="Voir détails">📄</button>
+          <button class="btn btn-edit" (click)="editProduct(product)"title="Modifier">✏️</button>
+          <button class="btn btn-delete" (click)="deleteProduct(product)"title="Delete">🗑️</button>
         </td>
       </tr>
     </tbody>

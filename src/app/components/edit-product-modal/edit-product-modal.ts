@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Product } from '../../Model/model';
 import { FormsModule } from '@angular/forms';
@@ -10,14 +10,22 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './edit-product-modal.html',
   styleUrls: ['./edit-product-modal.css']
 })
-export class EditProductModal {
+export class EditProductModal implements OnChanges {
   @Input() product!: Product;
   @Input() categories: { id: number; name: string }[] = [];
   @Output() closeModal = new EventEmitter<void>();
   @Output() updateProduct = new EventEmitter<FormData>();
 
-  formData: Product = { ...this.product };
+  // ✅ Déclaration explicite
+  formData!: Product;
   imageFile: File | null = null;
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['product'] && this.product) {
+      // ✅ Initialisation correcte quand l’input change
+      this.formData = { ...this.product };
+    }
+  }
 
   onFileChange(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -40,21 +48,19 @@ export class EditProductModal {
     if (this.imageFile) {
       data.append('image', this.imageFile);
     }
-
+    data.append('_method', 'PUT'); // ✅ override Laravel method
     this.updateProduct.emit(data);
+    
   }
-
-
 
   close(): void {
     this.closeModal.emit();
   }
 
   getProductImage(product: Product | null): string {
-  if (product?.image) {
-    return `http://127.0.0.1:8000/storage/${product.image}`;
+    if (product?.image) {
+      return `http://127.0.0.1:8000/storage/${product.image}`;
+    }
+    return 'assets/no-image.png'; // fallback
   }
-  return 'assets/no-image.png'; // fallback
-}
-
 }

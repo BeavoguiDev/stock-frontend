@@ -3,10 +3,7 @@ import { FormBuilder, FormGroup, Validators, AbstractControl, ValidationErrors, 
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth';
-import { ToastrService } from 'ngx-toastr';
 import { toast } from 'ngx-sonner';
-
-
 
 @Component({
   selector: 'app-page-inscription',
@@ -21,8 +18,8 @@ export class PageInscription implements OnInit {
   constructor(
   private fb: FormBuilder,
   private router: Router,
-  private authService: AuthService,
-  private toastr: ToastrService
+  private authService: AuthService
+  
 ) {}
 
   ngOnInit(): void {
@@ -76,9 +73,13 @@ export class PageInscription implements OnInit {
         this.router.navigate(['/login']); 
       },
       error: (err) => {
-        console.error('Erreur lors de l’inscription :', err);
-        alert('Erreur : ' + (err.error?.message || 'Vérifie les champs'));
+        const message = err.error?.message || 'Erreur lors de l’inscription';
+        toast.error(message, {
+          description: 'Vérifie les champs',
+          duration: 3000
+        });
       }
+
     });
   } else {
     this.signupForm.markAllAsTouched();
@@ -86,7 +87,7 @@ export class PageInscription implements OnInit {
 }
 
   goToLogin() {
-    this.router.navigate(['/connexion']);
+    this.router.navigate(['/login']);
   }
 
   signInWithGoogle() {

@@ -47,8 +47,6 @@ export class PageLogin implements OnInit {
       this.authService.login(formData).subscribe({
         next: (res) => {
           localStorage.setItem('user', JSON.stringify(res.user));
-
-          // ✅ Notification succès avec ngx-sonner
           toast.success('Connexion réussie ✅', {
             description: 'Bienvenue ' + res.user.name,
             duration: 3000
@@ -56,14 +54,15 @@ export class PageLogin implements OnInit {
           this.router.navigate(['/inventory']);
         },
         error: (err) => {
-          const message = err.error?.message || 'Identifiants incorrects';
-
-          // ✅ Notification erreur avec ngx-sonner
-          toast.error(message, {
-            description: 'Erreur de connexion',
-            duration: 3000
-          });
+          let message = 'Erreur de connexion';
+          if (err.status === 401) {
+            message = err.error?.message || 'Identifiants incorrects';
+          } else if (err.status === 500) {
+            message = 'Erreur interne du serveur';
+          }
+          toast.error(message, { description: 'Connexion échouée', duration: 3000 });
         }
+
       });
     } else {
       this.loginForm.markAllAsTouched();
@@ -75,7 +74,7 @@ export class PageLogin implements OnInit {
   }
 
   signInWithGoogle() {
-    console.log('Google login clicked');
+    console.log('Google login ');
     toast.warning('Connexion avec Google en cours...', {
       description: 'Option momentanement indisponible',
       duration: 5000

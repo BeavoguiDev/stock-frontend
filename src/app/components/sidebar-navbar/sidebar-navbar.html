@@ -1,11 +1,6 @@
 <div class="sidebar">
   <div class="logo">KANBAN</div>
 
-  <div class="user-info" *ngIf="user">
-    <span class="icon">👤</span>
-    <span class="username">{{ user.name || user.email }}</span>
-  </div>
-
   <ul class="menu">
     <li routerLinkActive="active">
       <span class="icon">📊</span>
@@ -47,4 +42,9 @@
       <span class="label">Log Out</span>
     </li>
   </ul>
+  <br><br>
+  <div class="user-info" *ngIf="user">
+    <span class="icon">👤</span>
+    <span class="username">Utilisateur connecté 🟢<br>{{ user.name || user.email }}</span>
+  </div>
 </div>

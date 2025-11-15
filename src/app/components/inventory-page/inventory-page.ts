@@ -65,6 +65,9 @@ export class InventoryPage implements OnInit {
         },
         error: (err) => {
           console.error('Erreur lors de la récupération des produits :', err);
+          toast.error('Erreur lors du chargement des produits ❌', {
+            description: 'Impossible de récupérer les données'
+          });
           this.isLoading = false;
         }
       });
@@ -108,7 +111,7 @@ export class InventoryPage implements OnInit {
     if (product.image) {
       return `http://127.0.0.1:8000/storage/${product.image}`;
     }
-    return 'assets/AI.jpg';
+    return 'assets/IA.jpg';
   }
 
   getCategoryName(id: number | undefined): string {
@@ -171,6 +174,7 @@ export class InventoryPage implements OnInit {
           toast.success('Produit supprimé ✅', {
             description: `${product.name} a été supprimé`
           });
+          this.loadProducts()
         },
         error: () => {
           toast.error('Erreur lors de la suppression ❌', {

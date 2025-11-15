@@ -21,3 +21,15 @@ export interface Product {
   updated_at?: string; // ✅ ajout
   
 }
+
+export interface Supplier {
+  id?: number;
+  name: string;
+  email: string;
+  phone: string;
+  takes_back_returns: boolean;
+  created_at?: string;
+  updated_at?: string;
+  products?: any[];
+}
+

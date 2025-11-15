@@ -1,4 +1,37 @@
+<div class="suppliers-wrapper">
+  <h1 class="page-title">Liste des Fournisseurs</h1>
 
-<div class="container">
-    <p>Suppliers disponible pour le moment!</p>
+  <button class="add-button" (click)="showModal = true">➕ Ajouter un Fournisseur</button>
+
+  <div *ngIf="isLoading" class="spinner">
+    <div class="loader"></div>
+    <span>Chargement des fournisseurs...</span>
+  </div>
+
+  <table class="suppliers-table" *ngIf="!isLoading">
+    <thead>
+      <tr>
+        <th>Fournisseur</th>
+        <th>Produit</th>
+        <th>Numéro de Contact</th>
+        <th>Email</th>
+        <th>Type</th>
+        <th>En cours d’acheminement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let supplier of suppliers">
+        <td>{{ supplier.name }}</td>
+        <td>{{ supplier.products?.[0]?.name ?? '–' }}</td>
+        <td>{{ supplier.phone }}</td>
+        <td>{{ supplier.email }}</td>
+        <td>
+          <span [ngClass]="supplier.takes_back_returns ? 'return-yes' : 'return-no'">
+            {{ supplier.takes_back_returns ? 'Accepte les retours' : 'N’accepte pas les retours' }}
+          </span>
+        </td>
+        <td>–</td> <!-- sera remplacé par le calcul des commandes dans le ticket suivant -->
+      </tr>
+    </tbody>
+  </table>
 </div>

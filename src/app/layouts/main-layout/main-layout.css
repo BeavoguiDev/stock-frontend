@@ -1,20 +1,19 @@
-*{
-  padding: 0px;
-  margin: 0px;
-}
 .layout {
   display: flex;
   height: 100vh;
   overflow: hidden;
 }
 
+/* Sidebar est déjà stylisé dans son propre fichier */
 app-sidebar-navbar {
   flex-shrink: 0;
 }
 
+/* Zone principale à droite du sidebar */
 .main-content {
   flex-grow: 1;
+  padding: 24px;
   background-color: #fafafa; /* gris très clair */
   overflow-y: auto;
+  box-sizing: border-box;
 }
-

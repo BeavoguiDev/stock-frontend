@@ -1,0 +1,50 @@
+<div class="sidebar">
+  <div class="logo">KANBAN</div>
+
+  <div class="user-info" *ngIf="user">
+    <span class="icon">👤</span>
+    <span class="username">{{ user.name || user.email }}</span>
+  </div>
+
+  <ul class="menu">
+    <li routerLinkActive="active">
+      <span class="icon">📊</span>
+      <a routerLink="/dashboard" class="label">Dashboard</a>
+    </li>
+
+    <li routerLinkActive="active">
+      <span class="icon">📦</span>
+      <a routerLink="/inventory" class="label">Inventory</a>
+    </li>
+
+    <li routerLinkActive="active">
+      <span class="icon">📈</span>
+      <a routerLink="/reports" class="label">Reports</a>
+    </li>
+
+    <li routerLinkActive="active">
+      <span class="icon">🏭</span>
+      <a routerLink="/suppliers" class="label">Suppliers</a>
+    </li>
+
+    <li routerLinkActive="active">
+      <span class="icon">🧾</span>
+      <a routerLink="/orders" class="label">Orders</a>
+    </li>
+
+    <li routerLinkActive="active">
+      <span class="icon">🛒</span>
+      <a routerLink="/store" class="label">Manage-Store</a>
+    </li>
+
+    <li routerLinkActive="active">
+      <span class="icon">⚙️</span>
+      <a routerLink="/settings" class="label">Settings</a>
+    </li>
+
+    <li (click)="logout()">
+      <span class="icon">🚪</span>
+      <span class="label">Log Out</span>
+    </li>
+  </ul>
+</div>

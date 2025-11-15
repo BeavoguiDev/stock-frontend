@@ -1,0 +1,76 @@
+
+.sidebar {
+  width: 220px;
+  height: 100vh;
+  background-color: #ffffff; /* blanc pur */
+  color: #333; /* texte gris foncé */
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  border-right: 1px solid #e0e0e0; /* séparation subtile */
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #1976d2; /* bleu moderne */
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu li {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+  
+}
+ul li a{
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.menu li:hover {
+  background-color: #f0f0f0; /* gris clair au hover */
+}
+
+.menu li.active {
+  background-color: #e3f2fd; /* bleu pastel pour l’actif */
+  color: #1976d2; /* texte bleu foncé */
+  font-weight: 500;
+}
+
+.icon {
+  font-size: 18px;
+  margin-right: 12px;
+}
+
+.label {
+  font-size: 15px;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #333;
+}
+
+.user-info .icon {
+  margin-right: 8px;
+}

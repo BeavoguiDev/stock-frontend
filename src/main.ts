@@ -10,24 +10,21 @@ import { provideStore } from '@ngrx/store';
 import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { reducers } from './app/store/auth'; // ton index.ts du dossier store
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 
 bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
     provideHttpClient(),
-    provideToastr(),
-
-    // ✅ Enregistrement du Store global
+    provideAnimations(), // animations nécessaires pour les toasts
+    provideToastr({
+      positionClass: 'toast-center', // classe CSS personnalisée
+      timeOut: 3000,
+      preventDuplicates: true,
+    }),
     provideStore(reducers),
-
-    // ✅ (optionnel) Enregistrement des effets — vide pour l’instant
     provideEffects([]),
-
-    // ✅ Activation des DevTools (pour suivre les actions NgRx dans le navigateur)
-    // provideStoreDevtools({
-    //   maxAge: 25,
-    //   logOnly: environment.production, // logs limités en mode prod
-    // }),
   ],
 }).catch(err => console.error(err));
+

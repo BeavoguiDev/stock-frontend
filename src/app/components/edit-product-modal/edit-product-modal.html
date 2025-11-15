@@ -1,0 +1,42 @@
+<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal-content">
+  <h2>✏️ Modifier le produit</h2>
+
+  <div class="detail-grid">
+    <div class="image-box">
+      <img [src]="getProductImage(product)" alt="{{ product.name }}" class="detail-img" />
+      <input type="file" (change)="onFileChange($event)" />
+    </div>
+
+    <div class="info-box">
+      <label>Nom:
+        <input [(ngModel)]="formData.name" name="name" />
+      </label>
+      <label>Catégorie:
+        <select [(ngModel)]="formData.category_id" name="category_id">
+          <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+        </select>
+      </label>
+      <label>Prix d’achat:
+        <input type="number" [(ngModel)]="formData.buying_price" name="buying_price" />
+      </label>
+      <label>Prix de vente:
+        <input type="number" [(ngModel)]="formData.selling_price" name="selling_price" />
+      </label>
+      <label>Quantité:
+        <input type="number" [(ngModel)]="formData.quantity" name="quantity" />
+      </label>
+      <label>Seuil:
+        <input type="number" [(ngModel)]="formData.threshold" name="threshold" />
+      </label>
+      <label>Expiration:
+        <input type="date" [(ngModel)]="formData.expiry_date" name="expiry_date" />
+      </label>
+    </div>
+  </div>
+
+  <div class="modal-actions">
+    <button type="button" (click)="close()">Annuler</button>
+    <button type="button" (click)="submit()">Enregistrer</button>
+  </div>
+</div>

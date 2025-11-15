@@ -1,0 +1,43 @@
+<div class="modal-backdrop">
+  <div class="modal-content">
+    <h2>➕ Ajouter un produit</h2>
+
+    <div *ngIf="errors.length" class="error-box">
+      <ul>
+        <li *ngFor="let error of errors">{{ error }}</li>
+      </ul>
+    </div>
+
+    <form (ngSubmit)="submit()">
+      <label>Nom du produit</label>
+      <input type="text" [(ngModel)]="formData.name" name="name" required />
+
+      <label>Catégorie</label>
+      <select [(ngModel)]="formData.category_id" name="category_id" required>
+        <option value="" disabled selected>-- Choisir une catégorie --</option>
+        <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
+      </select>
+
+      <label>Prix d’achat</label>
+      <input type="number" [(ngModel)]="formData.buying_price" name="buying_price" required />
+
+      <label>Prix de vente</label>
+      <input type="number" [(ngModel)]="formData.selling_price" name="selling_price" required />
+
+      <label>Quantité</label>
+      <input type="number" [(ngModel)]="formData.quantity" name="quantity" required />
+
+      <label>Seuil</label>
+      <input type="number" [(ngModel)]="formData.threshold" name="threshold" required />
+
+      <label>Date d’expiration</label>
+      <input type="date" [(ngModel)]="formData.expiry_date" name="expiry_date" />
+      <input type="file" (change)="onFileSelected($event)" />
+
+      <div class="modal-actions">
+        <button type="submit">Ajouter</button>
+        <button type="button" (click)="closeModal.emit()">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>

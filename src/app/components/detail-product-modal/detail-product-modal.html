@@ -1,0 +1,32 @@
+<div class="modal-backdrop" (click)="close()"></div>
+<div class="modal-content">
+  <h2>📄 Détail du produit</h2>
+
+  <div class="detail-grid" *ngIf="product">
+    <div class="image-box">
+      <img
+        [src]="getProductImage(product)"
+        [alt]="product.name"
+        class="detail-img"
+      />
+    </div>
+
+    <div class="info-box">
+      <p><strong>Nom:</strong> {{ product.name }}</p>
+      <p><strong>Catégorie:</strong> {{ categoryName }}</p>
+
+      <p><strong>Prix d’achat:</strong> {{ product.buying_price }} GNF</p>
+      <p><strong>Prix de vente:</strong> {{ product.selling_price }} GNF</p>
+      <p><strong>Quantité:</strong> {{ product.quantity }}</p>
+      <p><strong>Seuil:</strong> {{ product.threshold }}</p>
+      <p><strong>Expiration:</strong> {{ product.expiry_date | date:'dd/MM/yyyy' }}</p>
+      <p *ngIf="product.supplier_id"><strong>Fournisseur:</strong> {{ product.supplier_id }}</p>
+      <p><strong>Créé le:</strong> {{ product.created_at | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p><strong>Mis à jour:</strong> {{ product.updated_at | date:'dd/MM/yyyy HH:mm' }}</p>
+    </div>
+  </div>
+
+  <div class="modal-actions">
+    <button type="button" (click)="close()">Fermer</button>
+  </div>
+</div>

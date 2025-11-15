@@ -2,14 +2,13 @@ import { Component, OnInit, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ApiService } from './services/api';
 import { HttpClientModule } from '@angular/common/http';
-import { Navbar } from './components/navbar/navbar';
-import { Store } from '@ngrx/store';
-import { AppState } from './store/auth';
+import { NgxSonnerToaster } from 'ngx-sonner';
+import { SidebarNavbar } from './components/sidebar-navbar/sidebar-navbar';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HttpClientModule,Navbar],
+  imports: [RouterOutlet, HttpClientModule, NgxSonnerToaster],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

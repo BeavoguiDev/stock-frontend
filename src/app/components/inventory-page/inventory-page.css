@@ -1,0 +1,255 @@
+
+/* Wrapper général */
+.inventory-wrapper {
+  /* padding: 20px; */
+  font-family: 'Segoe UI', sans-serif;
+  min-height: 100vh;
+}
+
+/* Titre principal */
+.page-title {
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 25px;
+  color: #2c3e50;
+}
+
+/* Barre de recherche + bouton */
+.inventory-header {
+  display: flex;
+  justify-content: baseline;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.search-input {
+  padding: 10px 14px;
+  width: 300px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.add-button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+  background-color: #2980b9;
+}
+
+.category-select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 14px;
+  color: #333;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  margin-left: 10px; /* petit espace à gauche si placé à côté de la barre de recherche */
+}
+
+/* Effet au focus */
+.category-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+}
+
+/* Option style */
+.category-select option {
+  padding: 6px;
+  font-size: 14px;
+}
+
+/* Tableau */
+.inventory-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.inventory-table th,
+.inventory-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+  font-size: 14px;
+}
+
+.inventory-table th {
+  background-color: #ecf0f1;
+  font-weight: 600;
+  color: #34495e;
+  font-weight: 700;
+}
+
+.inventory-table tr:hover {
+  background-color: #f9f9f9;
+}
+
+
+
+/* Disponibilité */
+.in-stock {
+  color: #27ae60;
+  font-weight: bold;
+}
+
+.low-stock {
+  color: #e67e22;
+  font-weight: bold;
+}
+
+.out-stock {
+  color: #c0392b;
+  font-weight: bold;
+}
+
+/* Pigination */
+
+.pagination-container {
+  display: flex;
+  justify-content:space-between; /* espace entre pagination et select */
+  align-items: center;            /* alignement vertical */
+  margin-top: 15px;
+}
+
+.per-page-select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.per-page-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+}
+
+.pagination {
+  display: flex;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #3498db;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:disabled {
+  background-color: #bdc3c7;
+  cursor: not-allowed;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #2980b9;
+}
+
+.per-page-select {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  font-size: 14px;
+  margin-left: 10px;
+  transition: all 0.2s ease-in-out;
+}
+
+.per-page-select:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.4);
+}
+
+.product-img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ddd;
+}
+
+
+/*les boutons */
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.btn-detail {
+  background-color: #2196f3;
+  color: #fff;
+}
+
+.btn-edit {
+  background-color: #ff9800;
+  color: #fff;
+}
+
+.btn-delete {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+
+/* isLoading" */
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+  font-size: 16px;
+  color: #3498db;
+}
+
+/* Cercle animé */
+.loader {
+  border: 4px solid #f3f3f3; /* gris clair */
+  border-top: 4px solid #3498db; /* bleu */
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  animation: spin 1s linear infinite;
+}
+
+/* Animation rotation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

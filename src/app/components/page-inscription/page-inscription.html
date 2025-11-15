@@ -1,0 +1,50 @@
+<h1>Bienvenue dans la gestion de stock Kanban</h1>
+<div class="signup-container">
+  <h1>Créer un compte</h1>
+
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Nom*</label>
+      <input id="name" formControlName="name" placeholder="Entrer votre nom" />
+      <div class="error" *ngIf="name.invalid && name.touched">
+        Le nom est obligatoire.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email*</label>
+      <input id="email" formControlName="email" placeholder="Entrer votre Email" />
+      <div class="error" *ngIf="email.invalid && email.touched">
+        veuillez entrer un mail valide.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password*</label>
+      <input id="password" type="password" formControlName="password" placeholder="Password" />
+      <div class="error" *ngIf="password.invalid && password.touched">
+        le password doit contenir 8 caractère.
+      </div>
+    </div>
+
+     <div class="form-group">
+      <label for="confirmPassword">Confirmer le mot de passe*</label>
+      <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Confirmez votre mot de passe" />
+      <div class="error" *ngIf="confirmPassword.touched && signupForm.errors?.['passwordMismatch']">
+        Les mots de passe ne correspondent pas.
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="signupForm.invalid">Créer un compte</button>
+  </form>
+  
+  <button type="button" class="google-btn" (click)="signInWithGoogle()">
+      <!-- <img src="assets/google-icon.svg" alt="Google" /> -->
+      Se connecter avec Google
+  </button>
+
+  <p class="login-link">
+    Avez-vous un compte ? <a (click)="goToLogin()">Connectez-vous</a>
+  </p>
+
+</div>

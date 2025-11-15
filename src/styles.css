@@ -1,1 +1,78 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+  padding: 0px;
+  margin: 0px;
+}
+
+/*  Base commune à tous les toasts */
+
+.toast-base { 
+  color: #fff !important; 
+  border-radius: 8px !important; 
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+  max-width: 25%; 
+  padding: 16px !important; 
+  font-size: 15px; 
+  font-family: 'Inter', 'Roboto', sans-serif; animation: fadeSlideIn 0.4s ease-out; 
+}
+
+.toast-base {
+  color: #fff !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  max-width: 25%;
+  padding: 16px !important;
+  font-size: 15px;
+  font-family: 'Inter', 'Roboto', sans-serif;
+  animation: fadeSlideIn 0.4s ease-out;
+}
+
+/*  Animation d'apparition */
+@keyframes fadeSlideIn {
+  from {
+    transform: translateY(-15px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* 🎨 Titres & messages */
+.toast-base .toast-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.toast-base .toast-message {
+  font-size: 14px;
+  opacity: 0.95;
+}
+
+/* 🟢 Succès (inscription, connexion réussie) */
+.toast-success {
+  background-color: #4caf50 !important;
+}
+
+/* 🔴 Erreur (identifiants incorrects, problème API, etc.) */
+.toast-error {
+  background-color: #f44336 !important;
+}
+
+/* 🔵 Information (déconnexion, notifications neutres) */
+.toast-info {
+  background-color: #2196f3 !important;
+}
+
+/* 🟠 Avertissement (mot de passe faible, action non confirmée, etc.) */
+.toast-warning {
+  background-color: #ff9800 !important;
+}
+
+/* 🌗 Mode sombre automatique */
+@media (prefers-color-scheme: dark) {
+  .toast-base {
+    color: #f1f1f1 !important;
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  }
+}

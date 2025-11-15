@@ -1,0 +1,103 @@
+<div class="inventory-wrapper">
+  <h1 class="page-title">Liste des Produits</h1>
+  <div class="inventory-header">
+    <input
+      type="text"
+      [(ngModel)]="searchTerm"
+      (input)="onSearch()"
+      placeholder="🔍 Search product"
+      class="search-input"
+    />
+    <button (click)="showModal = true" class="add-button">➕ Add Product</button>
+
+    <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()" class="category-select">
+      <option [ngValue]="null">Toutes les catégories</option>
+      <option *ngFor="let cat of categories" [ngValue]="cat.id">{{ cat.name }}</option>
+    </select>
+
+    <app-add-product-modal
+      *ngIf="showModal"
+      (productAdded)="onProductAdded($event)"
+      (closeModal)="showModal = false">
+    </app-add-product-modal>
+
+  </div>
+
+  <div *ngIf="isLoading" class="spinner">
+    <div class="loader"></div>
+    <span>Chargement des produits...</span>
+  </div>
+
+  <table class="inventory-table" *ngIf="!isLoading">
+    <thead>
+      <tr>
+        <th style="text-align: center;">-</th>
+        <th>Product</th>
+        <th>Buying Price</th>
+        <th>Quantity</th>
+        <th>Threshold</th>
+        <th>Expiry Date</th>
+        <th>Availability</th>
+        <th>Actions</th> 
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>
+          <img 
+            [src]="getProductImage(product)" 
+            alt="{{ product.name }}" 
+            class="product-img"
+          />
+        </td>
+
+        <td>{{ product.name }}</td>
+        <td>{{ product.buying_price }} GNF</td>
+        <td>{{ product.quantity }} Packets</td>
+        <td>{{ product.threshold }} Packets</td>
+        <td>{{ product.expiry_date | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <span [ngClass]="getAvailabilityClass(product)">
+            {{ getAvailability(product) }}
+          </span>
+        </td>
+        <td>
+          <button class="btn btn-detail" (click)="viewDetail(product)">📄</button>
+          <button class="btn btn-edit" (click)="editProduct(product)">✏️</button>
+          <button class="btn btn-delete" (click)="deleteProduct(product)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-container">
+    <div class="pagination">
+      <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1">← Précédent</button>
+      <span>Page {{ currentPage }} / {{ totalPages }}</span>
+      <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages">Suivant →</button>
+    </div>
+
+    <select [(ngModel)]="itemsPerPage" (change)="onPerPageChange()" class="per-page-select">
+      <option [value]="5">5 par page</option>
+      <option [value]="10">10 par page</option>
+      <option [value]="20">20 par page</option>
+    </select>
+  </div>
+
+  <app-detail-product-modal
+    *ngIf="showDetailModal"
+    [product]="selectedProduct"
+    [categoryName]="getCategoryName(selectedProduct?.category_id)"
+    (closeModal)="closeDetailModal()">
+  </app-detail-product-modal>
+
+  <app-edit-product-modal
+    *ngIf="showEditModal"
+    [product]="productToEdit!"
+    [categories]="categories"
+    (closeModal)="closeEditModal()"
+    (updateProduct)="submitEdit($event)">
+  </app-edit-product-modal>
+
+
+</div>

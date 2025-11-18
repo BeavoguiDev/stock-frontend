@@ -9,6 +9,14 @@
       class="search-input"
     />
     <button (click)="showModal = true" class="add-button">➕ Add Product</button>
+    <button class="add-button" (click)="showCategoryModal = true">➕ Ajouter une Catégorie</button>
+
+    <app-add-category-modal
+      *ngIf="showCategoryModal"
+      (categoryAdded)="onCategoryAdded($event)"
+      (closeModal)="showCategoryModal = false">
+    </app-add-category-modal>
+
 
     <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()" class="category-select">
       <option [ngValue]="null">Toutes les catégories</option>

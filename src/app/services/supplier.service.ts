@@ -3,6 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Supplier } from '../Model/model';
 
+export interface PaginatedResponse<T> {
+  data: T[];
+  meta: {
+    current_page: number;
+    last_page: number;
+    total: number;
+  };
+}
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +21,10 @@ export class SupplierService {
   constructor(private http: HttpClient) {}
 
   // 📄 Liste des fournisseurs
-  getSuppliers(): Observable<Supplier[]> {
-    return this.http.get<Supplier[]>(`${this.baseUrl}/suppliers`);
+  getSuppliers(page: number = 1, perPage: number = 5): Observable<PaginatedResponse<Supplier>> {
+    return this.http.get<PaginatedResponse<Supplier>>(
+      `${this.baseUrl}/suppliers?page=${page}&per_page=${perPage}`
+    );
   }
 
   // 📄 Détail d’un fournisseur

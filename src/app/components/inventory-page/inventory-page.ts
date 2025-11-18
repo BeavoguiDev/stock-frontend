@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { Product } from '../../Model/model';
+import { Product, Category } from '../../Model/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AddProductModal } from '../add-product-modal/add-product-modal';
 import { DetailProductModal } from '../detail-product-modal/detail-product-modal';
-import { EditProductModal } from '../edit-product-modal/edit-product-modal'; // ✅ à ajouter
+import { EditProductModal } from '../edit-product-modal/edit-product-modal'; 
 import { toast } from 'ngx-sonner';
+import { AddCategoryModal } from '../add-category-modal/add-category-modal';
 
 @Component({
   selector: 'app-inventory-page',
@@ -16,7 +17,8 @@ import { toast } from 'ngx-sonner';
     FormsModule,
     AddProductModal,
     DetailProductModal,
-    EditProductModal // ✅ à inclure
+    EditProductModal,
+    AddCategoryModal
   ],
   templateUrl: './inventory-page.html',
   styleUrls: ['./inventory-page.css']
@@ -184,4 +186,15 @@ export class InventoryPage implements OnInit {
       });
     }
   }
+
+  showCategoryModal = false;
+
+  onCategoryAdded(category: Category): void {
+    console.log('Nouvelle catégorie ajoutée :', category);
+    // Tu peux ici rafraîchir la liste des catégories si elle est affichée
+  }
+
 }
+
+
+

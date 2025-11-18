@@ -3,6 +3,7 @@
 export interface Category {
   id: number;
   name: string;
+  description:string;
 }
 
 export interface Product {
@@ -17,8 +18,9 @@ export interface Product {
   supplier_id?: number;
   category?: Category;
   image?: string;
-  created_at?: string; // ✅ ajout
-  updated_at?: string; // ✅ ajout
+  created_at?: string; 
+  updated_at?: string; 
+  supplier?: Supplier;
   
 }
 

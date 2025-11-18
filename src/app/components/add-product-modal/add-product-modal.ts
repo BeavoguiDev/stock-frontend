@@ -1,10 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ProductService } from '../../services/product.service';
-import { Category, Product } from '../../Model/model';
+import { Category, Product, Supplier } from '../../Model/model';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { toast } from 'ngx-sonner';
-
+import { Suppliers } from '../suppliers/suppliers';
+import { SupplierService } from '../../services/supplier.service';
 
 @Component({
   selector: 'app-add-product-modal',
@@ -18,9 +19,12 @@ export class AddProductModal implements OnInit {
   @Output() closeModal = new EventEmitter<void>();
 
   categories: Category[] = [];
+  suppliers: Supplier[] = [];
+
   formData: Partial<Product> = {
     name: '',
     category_id: 0,
+    supplier_id: 0,
     buying_price: 0,
     selling_price: 0,
     quantity: 0,
@@ -31,14 +35,25 @@ export class AddProductModal implements OnInit {
 
   errors: string[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private supplierService: SupplierService) {}
 
   ngOnInit(): void {
-    this.productService.getCategories().subscribe({
-      next: (data) => this.categories = data,
-      error: (err) => console.error('Erreur chargement catégories', err)
-    });
-  }
+  // Charger les catégories
+  this.productService.getCategories().subscribe({
+    next: (response) => {
+      this.categories = response; // ✅ liste simple
+    },
+    error: (err) => console.error('Erreur chargement catégories', err)
+  });
+
+  // Charger les fournisseurs
+  this.supplierService.getSuppliers().subscribe({
+    next: (response) => {
+      this.suppliers = response.data; // ✅ pagination Laravel
+    },
+    error: (err) => console.error('Erreur chargement fournisseurs', err)
+  });
+}
 
   // Pour Gérer les images
   selectedFile: File | null = null;

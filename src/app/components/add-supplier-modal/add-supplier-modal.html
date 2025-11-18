@@ -1,0 +1,36 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h2>➕ Ajouter un Fournisseur</h2>
+
+    <form (ngSubmit)="addSupplier()">
+      <div class="form-group">
+        <label for="name">Nom du fournisseur</label>
+        <input id="name" [(ngModel)]="name" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input id="email" type="email" [(ngModel)]="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input id="phone" type="text" [(ngModel)]="phone" name="phone" required />
+      </div>
+
+      <div class="form-group checkbox-group">
+        <label>
+          <input type="checkbox" [(ngModel)]="takesBackReturns" name="takesBackReturns" />
+          Accepte les retours
+        </label>
+      </div>
+
+      <div class="modal-actions">
+        <button type="submit" [disabled]="isLoading">
+          {{ isLoading ? 'Ajout...' : 'Ajouter' }}
+        </button>
+        <button type="button" (click)="closeModal.emit()">Annuler</button>
+      </div>
+    </form>
+  </div>
+</div>

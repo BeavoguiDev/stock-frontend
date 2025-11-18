@@ -84,3 +84,39 @@
   color: #dc2626; /* rouge */
   font-weight: bold;
 }
+
+.pagination {
+  display: flex;
+  justify-content: center;   /* centrer les boutons */
+  align-items: center;
+  gap: 1rem;                 /* espace entre les éléments */
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.pagination button {
+  background-color: #007bff; /* bleu moderne */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #0056b3; /* bleu plus foncé au hover */
+  transform: translateY(-2px); /* petit effet de soulèvement */
+}
+
+.pagination button:disabled {
+  background-color: #cccccc; /* gris pour désactivé */
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333;
+}

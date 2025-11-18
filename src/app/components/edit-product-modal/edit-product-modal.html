@@ -17,6 +17,14 @@
           <option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</option>
         </select>
       </label>
+      <label for="supplier_id">Fournisseur</label>
+      <select [(ngModel)]="formData.supplier_id" name="supplier_id" required>
+        <option value="" disabled>-- Choisir un fournisseur --</option>
+        <option *ngFor="let sup of suppliers" [value]="sup.id">
+          {{ sup.name }}
+        </option>
+      </select>
+
       <label>Prix d’achat:
         <input type="number" [(ngModel)]="formData.buying_price" name="buying_price" />
       </label>

@@ -9,12 +9,13 @@ import { ManageStore } from './components/manage-store/manage-store';
 import { Orders } from './components/orders/orders';
 import { Settings } from './components/settings/settings';
 import { Suppliers } from './components/suppliers/suppliers';
+import { LoginGuard } from './services/login.guard';
 
 
 
 export const routes: Routes = [
     
-    {path:'login',component:PageLogin},
+    {path:'login',component:PageLogin, canActivate: [LoginGuard]},
     {path:'register',component:PageInscription},
     {
         path:'',

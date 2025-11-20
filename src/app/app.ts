@@ -3,7 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { ApiService } from './services/api';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSonnerToaster } from 'ngx-sonner';
-import { SidebarNavbar } from './components/sidebar-navbar/sidebar-navbar';
+
+// 🔹 Ajout des services d’authentification et d’inactivité
+import { AuthService } from './services/auth';
+import { IdleService } from './services/idle.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +19,14 @@ export class App implements OnInit {
   protected readonly title = signal('stock-frontend');
   message = '';
 
-  constructor(private api: ApiService) {}
+  constructor(
+    private api: ApiService,
+    private authService: AuthService,
+    private idleService: IdleService
+  ) {}
 
   ngOnInit() {
+    // ✅ Test API Laravel
     this.api.getTest().subscribe({
       next: (data) => {
         console.log('Réponse du serveur Laravel :', data);
@@ -28,7 +36,10 @@ export class App implements OnInit {
         console.error('Erreur de connexion au backend :', err);
       }
     });
-  }
-  
-}
 
+    // ✅ Démarrer la surveillance si l’utilisateur est connecté
+    if (this.authService.isAuthenticated()) {
+      this.idleService.startWatching();
+    }
+  }
+}

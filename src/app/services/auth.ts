@@ -10,7 +10,7 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  // 🔐 Inscription
+  // Inscription
   register(data: {
     name: string;
     email: string;

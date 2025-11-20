@@ -1,4 +1,3 @@
-// src/app/Model/model.ts
 
 export interface Category {
   id: number;
